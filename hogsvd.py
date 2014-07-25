@@ -26,10 +26,13 @@ A single file in the output directory is created for the shared subspace V.
 
 import numpy as np
 import sys
-from cmdLineTool import processCommandLine
-
+#from cmdLineTool import processCommandLine
+import sggsvd
 usage = "hogsvd.py -m textFileWithMatrixA -m textFileWithMatrixB -o outputDir"
-def 
+
+
+def main(argv):
+    print usage
 
 
 

@@ -33,3 +33,5 @@ A single file in the output directory is created for the shared subspace V.
 
       vi. Normalize columns of Bi to get Ui, norm of the columns form the elements of elements of the diagonal matrix Sigma_i
 
+4. To generate the sggsvd binding use f2py like this:
+   f2py -L../../lapack-3.5.0/liblapack.a -llapack -c ../../lapack-3.5.0/SRC/sggsvd.f -m ssgsvd
