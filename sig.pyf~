@@ -1,0 +1,35 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module sggsvd2 ! in 
+    interface  ! in :sggsvd2
+        subroutine sggsvd(jobu,jobv,jobq,m,n,p,k,l,a,lda,b,ldb,alpha,beta,u,ldu,v,ldv,q,ldq,work,iwork,info) ! in :sggsvd2:../lapack-3.5.0/SRC/sggsvd.f
+            character :: jobu
+            character :: jobv
+            character :: jobq
+            integer :: m
+            integer :: n
+            integer :: p
+            integer :: k
+            integer :: l
+            real dimension(lda,*) :: a
+            integer, optional,check(shape(a,0)==lda),depend(a) :: lda=shape(a,0)
+            real dimension(ldb,*) :: b
+            integer, optional,check(shape(b,0)==ldb),depend(b) :: ldb=shape(b,0)
+            real dimension(*) :: alpha
+            real dimension(*) :: beta
+            real dimension(ldu,*) :: u
+            integer, optional,check(shape(u,0)==ldu),depend(u) :: ldu=shape(u,0)
+            real dimension(ldv,*) :: v
+            integer, optional,check(shape(v,0)==ldv),depend(v) :: ldv=shape(v,0)
+            real dimension(ldq,*) :: q
+            integer, optional,check(shape(q,0)==ldq),depend(q) :: ldq=shape(q,0)
+            real dimension(*) :: work
+            integer dimension(*) :: iwork
+            integer :: info
+        end subroutine sggsvd
+    end interface 
+end python module sggsvd2
+
+! This file was auto-generated with f2py (version:2).
+! See http://cens.ioc.ee/projects/f2py2e/

@@ -34,4 +34,15 @@ A single file in the output directory is created for the shared subspace V.
       vi. Normalize columns of Bi to get Ui, norm of the columns form the elements of elements of the diagonal matrix Sigma_i
 
 4. To generate the sggsvd binding use f2py like this:
-   f2py -L../../lapack-3.5.0/liblapack.a -llapack -c ../../lapack-3.5.0/SRC/sggsvd.f -m ssgsvd
+
+   Step 1: Generate Signature file:
+
+   f2py ../lapack-3.5.0/SRC/sggsvd.f -m sggsvd2 -h sig.pyf
+
+   Step 2: Modify sig.pyf to generate sig2.pyf (Trick is in declaring the input and output variables using input=intent(in),and output=intent(in)+intent(out)
+
+   Step 3: Use sig2.pyf to generate the ssgsvd2 module
+
+   f2py -L../lapack-3.5.0/liblapack.a -llapack -c sig2.pyf ../lapack-3.5.0/SRC/sggsvd.f
+
+   Step 4: import ssgsvd2 in the python script as in hogsvd.py 
