@@ -28,8 +28,9 @@ A single file in the output directory is created for the shared subspace V.
 
 import numpy as np
 import sys
-#from cmdLineTool import processCommandLine
+from cmdline import processCommandLine
 import sggsvd2 as sggsvd
+import thgsvd as ho
 usage = "hogsvd.py -m textFileWithMatrixA -m textFileWithMatrixB -o outputDir"
 
 
@@ -62,20 +63,39 @@ def sggsvdOpts(A,B):
     work=np.zeros(max(3*n,m,p)+n) #
     iwork=np.zeros(n,dtype=np.int)
     info=0
-    #return(jobu,jobv,jobq,m,n,p,lda,ldb,ldu,ldv,ldq)
     return(jobu,jobv,jobq,m,n,p,k,l,lda,ldb,alpha,beta,ldu,U,ldv,V,ldq,Q,work,iwork,info)
-    
-def main(argv):
+
+#Routine for debugging that generates two matrices
+def generateTwoMats():
     A=np.random.rand(25)
     A=A.reshape(5,5)
     B=np.random.rand(25)
     B=B.reshape(5,5)
-    #(jobu,jobv,jobq,m,n,p,lda,ldb,ldu,ldv,ldq)=sggsvdOpts(A,B)
-    (jobu,jobv,jobq,m,n,p,k,l,lda,ldb,alpha,beta,ldu,U,ldv,V,ldq,Q,work,iwork,info)=sggsvdOpts(A,B)
-    #k,l,a,b,alpha,beta,u,v,q,work,iwork,info = sggsvd.sggsvd(jobu,jobv,jobq,m,n,p,A,B,lda,ldb,ldu,ldv,ldq)
-    #sggsvd.sggsvd(jobu=jobu,jobv=jobv,jobq=jobq,m=m,n=n,p=p,k=k,l=l,a=A,b=B,alpha=alpha,beta=beta,u=U,v=V,q=Q,work=work,iwork=iwork,info=info,lda=lda,ldb=ldb,ldu=ldu,ldv=ldv,ldq=ldq)
-    k,l,a,b,alpha,beta,u,v,q,work,iwork,info = sggsvd.sggsvd(jobu=jobu,jobv=jobv,jobq=jobq,m=m,n=n,p=p,k=k,l=l,a=A,b=B,alpha=alpha,beta=beta,u=U,v=V,q=Q,work=work,iwork=iwork,info=info,lda=lda,ldb=ldb,ldu=ldu,ldv=ldv,ldq=ldq)
-    print usage
+
+    
+def main(argv):
+    
+    (matList,outDir,useLapack)=processCommandLine(argv)
+    
+    nMatrices=len(matList)
+    
+    if nMatrices==1:
+        A=matList[0]
+        (U,S,V)=np.linalg.svd(A)
+
+    elif nMatrices==2: 
+    #and useLapack==True:
+        A=matList[0]
+        B=matList[1]
+        #Generate command line options for calling LAPACK Fortran Routine for two matrices
+        (jobu,jobv,jobq,m,n,p,k,l,lda,ldb,alpha,beta,ldu,U,ldv,V,ldq,Q,work,iwork,info)=sggsvdOpts(A,B)
+        #Call the Fortran wrapped generalized SVD routine for real-numbered matrices
+        k,l,a,b,alpha,beta,u,v,q,work,iwork,info = sggsvd.sggsvd(jobu=jobu,jobv=jobv,jobq=jobq,m=m,n=n,p=p,
+                                                             k=k,l=l,a=A,b=B,alpha=alpha,beta=beta,u=U,
+                                                             v=V,q=Q,work=work,iwork=iwork,info=info,lda=lda,
+                                                             ldb=ldb,ldu=ldu,ldv=ldv,ldq=ldq)
+    elif nMatrices==3:
+        ho.calcHOGSVD(matList)
 
 
 
