@@ -47,7 +47,7 @@ A single file in the output directory is created for the shared subspace V.
 
    Step 4: import ssgsvd2 in the python script as in hogsvd.py 
 
-
+```
    #############################################################
    Note: Comparing generalized-SVD N=2 between LAPACK and MATLAB
    #############################################################
@@ -62,7 +62,7 @@ A single file in the output directory is created for the shared subspace V.
        [ 0.92936619,  0.55483178,  0.25689855,  0.29377181,  0.88427309],
        [ 0.53662783,  0.5599302 ,  0.80107268,  0.07220077,  0.5653766 ],
        [ 0.1618458 ,  0.27674447,  0.65759925,  0.04619592,  0.32451514]
-
+```
 
    #######
    LAPACK
