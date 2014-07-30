@@ -31,6 +31,7 @@ import sys
 from cmdline import processCommandLine
 import thgsvd as ho
 import shgsvd as so
+import writeMat as wm
 usage = "hogsvd.py -m textFileWithMatrixA -m textFileWithMatrixB -m textFileWithMatrixC  -o outputDir (-l lapack optional for N=2 matrices)"
 
     
@@ -43,7 +44,10 @@ def main(argv):
     if nMatrices==1:
         A=matList[0]
         (U,S,V)=np.linalg.svd(A)
-
+        wm.writeMat(outDir,"U",U)
+        wm.writeMat(outDir,"S",S)
+        wm.writeMat(outDir,"V",V)
+        
     elif nMatrices==2 and useLapack==True:
         A=matList[0]
         B=matList[1]
@@ -51,6 +55,18 @@ def main(argv):
 
     elif nMatrices>=2 and useLapack==False:
         uMatList,sigList,V=ho.calcHOGSVD(matList)
+        
+        ct=0
+        for U in uMatList:
+            ct=ct+1
+            wm.writeMat(outDir,"U%d"%ct,U)
 
+        ct=0
+        for sig in sigList:
+            ct=ct+1
+            wm.writeMat(outDir,"S%d"%ct,sig)
+
+        wm.writeMat(outDir,"V",V)
+        
 if __name__=="__main__":
     main(sys.argv)

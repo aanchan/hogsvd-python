@@ -141,6 +141,16 @@ A single file in the output directory is created for the shared subspace V.
    #################
    MATLAB
    #################
+   GSVD   Generalized Singular Value Decomposition.
+   %   [U,V,X,C,S] = GSVD(A,B) returns unitary matrices U and V,
+   %   a (usually) square matrix X, and nonnegative diagonal matrices
+   %   C and S so that
+   %
+   %       A = U*C*X'
+   %       B = V*S*X'
+   %       C'*C + S'*S = I
+   
+
    U =
 
    -0.3963    0.4560   -0.2675   -0.4578    0.5949
@@ -189,9 +199,10 @@ A single file in the output directory is created for the shared subspace V.
     Sanity Check: Singular Values are unique for both
     implementations, though the order is of the singular
     values is not the same. Also the values of the right 
-    (common/shared) bases appear to be similar. Ambiguity
-    resides in MATLAB's X vs Lapack's X.T.
-    
+    (common/shared) bases appear to be similar. MATLAB gives
+    X^T while Lapack's R_A*Q^T gives X. See the MATLAB function's
+    note pasted from the gsvd.m file above. The left-bases for
+    MATLAB and LAPACK are not visibly similar.    
     #####################
 
 ```

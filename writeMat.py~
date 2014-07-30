@@ -1,0 +1,4 @@
+import numpy as np
+
+def writeMat(saveDir,matName,mat):
+    np.savetxt
