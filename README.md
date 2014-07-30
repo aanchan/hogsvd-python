@@ -9,7 +9,7 @@ Ponnapalli, Sri Priya, et al. "A higher-order generalized singular value decompo
 from multiple organisms." PloS one 6.12 (2011): e28072.(http://www.alterlab.org/HO_GSVD/)
 
 Usage : "hogsvd.py -m textFileWithMatrixD1 -m textFileWithMatrixD2 -m textFileWithMatrixD3 -o outputDir"
-
+Example: python hogsvd.py -m A.txt -m B.txt -m C.txt -o hogsvd-python/hogsvd-python
 ```
 Notes:
 
