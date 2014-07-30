@@ -6,7 +6,7 @@ hogsvd-python
 This script calculates the generalized SVD(GSVD) for N>2 matrices. This is referred to as the higher-order
 GSVD(HOGSVD). This is based upon work done by Ponnapalli, Alter et al in the paper: 
 Ponnapalli, Sri Priya, et al. "A higher-order generalized singular value decomposition for comparison of global mRNA expression 
-from multiple organisms." PloS one 6.12 (2011): e28072.
+from multiple organisms." PloS one 6.12 (2011): e28072.(http://www.alterlab.org/HO_GSVD/)
 
 Usage : "hogsvd.py -m textFileWithMatrixD1 -m textFileWithMatrixD2 -m textFileWithMatrixD3 -o outputDir"
 
