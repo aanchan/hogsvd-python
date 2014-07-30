@@ -31,14 +31,7 @@ import sys
 from cmdline import processCommandLine
 import thgsvd as ho
 import shgsvd as so
-usage = "hogsvd.py -m textFileWithMatrixA -m textFileWithMatrixB -o outputDir"
-
-#Routine for debugging that generates two matrices
-def generateTwoMats():
-    A=np.random.rand(25)
-    A=A.reshape(5,5)
-    B=np.random.rand(25)
-    B=B.reshape(5,5)
+usage = "hogsvd.py -m textFileWithMatrixA -m textFileWithMatrixB -m textFileWithMatrixC  -o outputDir (-l lapack optional for N=2 matrices)"
 
     
 def main(argv):
@@ -56,7 +49,7 @@ def main(argv):
         B=matList[1]
         (a,b,alpha,beta,u,v,q)=so.gsvd(A,B)
 
-    elif nMatrices==2 and useLapack==False:
+    elif nMatrices>=2 and useLapack==False:
         uMatList,sigList,V=ho.calcHOGSVD(matList)
 
 if __name__=="__main__":
