@@ -10,6 +10,7 @@ from multiple organisms." PloS one 6.12 (2011): e28072.(http://www.alterlab.org/
 
 Usage : "hogsvd.py -m textFileWithMatrixD1 -m textFileWithMatrixD2 -m textFileWithMatrixD3 -o outputDir"
 
+```
 Notes:
 
 1.outputDir will contain the text files, with U and Sigma matrices for each of the input matrices specified by the -m switch. 
@@ -46,6 +47,7 @@ A single file in the output directory is created for the shared subspace V.
    f2py -L../lapack-3.5.0/liblapack.a -llapack -c sig2.pyf ../lapack-3.5.0/SRC/sggsvd.f
 
    Step 4: import ssgsvd2 in the python script as in hogsvd.py 
+```
 
 ```
    #############################################################
