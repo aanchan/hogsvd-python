@@ -30,7 +30,7 @@ import numpy as np
 import sys
 from cmdline import processCommandLine
 import thgsvd as ho
-import shdgsvd as so
+import shgsvd as so
 usage = "hogsvd.py -m textFileWithMatrixA -m textFileWithMatrixB -o outputDir"
 
 #Routine for debugging that generates two matrices

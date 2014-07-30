@@ -85,7 +85,14 @@ A single file in the output directory is created for the shared subspace V.
    
    X - Common right basis for both A and B - Can be composed (I think...) from Q and the two R 
    matrices (upper triangular) corresponding R_A and R_B
+   	    
+   #######################
+   Note on X - 30 Jul,2014 
+   #######################	    	       
+   R_A and R_B below are identical, except for a scaling factor in each of the rows.
+   R_A*Q^T = X(MATLAB)^T (obtained from MATLAB). After R_A, R_B and Q appears X
    
+
    R_A
 
    [ 1.67658412  0.25851229  0.2992408   0.32308954 -2.47159886]
@@ -110,6 +117,13 @@ A single file in the output directory is created for the shared subspace V.
    [-0.92798996  0.28727585  0.20130633  0.00328219  0.12558617]
    [ 0.33142242  0.74963719  0.12557456  0.18310411  0.52811635]  
 
+   X=np.dot(a,q.T).T equals MATLAB's X
+   [-1.26842022, -0.58662677, -0.44634712, -0.64754015, -1.45628488],
+   [-1.47556603, -0.43780643, -0.07641244,  0.35704663, -1.41664648],
+   [-1.47927296,  0.03270556,  0.57969713, -0.71540958, -1.01822484],
+   [-1.7306881 ,  0.07104807, -0.17403072, -0.0579052 , -0.33982849],
+   [-0.4591077 ,  0.18049693, -0.25051117, -0.08882965, -1.42905056]
+
    Singular Values
 
    Alpha - Corresponding to matrix A
@@ -119,6 +133,8 @@ A single file in the output directory is created for the shared subspace V.
    Beta - Corresponding to matrix B
 
    [ 0.01556979,  0.618294  ,  0.90373927,  0.39221576,  0.99728167]
+
+   
 
    #################
    MATLAB
@@ -170,8 +186,10 @@ A single file in the output directory is created for the shared subspace V.
     ######################
     Sanity Check: Singular Values are unique for both
     implementations, though the order is of the singular
-    values is not the same. Also the values of Left and 
-    Right bases need not be unique just as in the SVD.	   
+    values is not the same. Also the values of the right 
+    (common/shared) bases appear to be similar. Ambiguity
+    resides in MATLAB's X vs Lapack's X.T.
+    
     #####################
 
 ```

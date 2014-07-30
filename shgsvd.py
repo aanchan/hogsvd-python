@@ -1,5 +1,5 @@
 import sggsvd2 as sggsvd
-
+import numpy as np
 
 
 def sggsvdOpts(A,B):
