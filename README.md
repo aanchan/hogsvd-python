@@ -268,7 +268,12 @@ A single file in the output directory is created for the shared subspace V.
     2. U1 appears to be the same as MATLAB's output U (left bases 1) above except for a permutation and sign-change.
     3. U2 appears to be the same as MATLAB's output V (left bases 2) above except for a permutation and sign change.
     4. All the eigen-values of S are >=1 in L.
-    
+    5. Values of C,S from MATLAB and SIG1 and SIG2 from this routine along with X' from MATLAB and V' from this routine are not comparable directly since MATLAB uses the CS decomposition and the HOGSVD uses an eigen-decomposition on S. But the product of C*X' = SIG1*V' and S*X'=SIG2*V' upto a perrmutation and sign-change.
+
+    ##################################################################################################
+    #Conclusion:The 5 points above give a sanity check that the implementation of the HOGSVD is correct.
+    #This also shows that the HOGSVD is not necessarily a unique decomposition...
+    ##################################################################################################
 	 
 
 ```

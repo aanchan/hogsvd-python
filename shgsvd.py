@@ -41,5 +41,15 @@ def gsvd(A,B):
                                                              k=k,l=l,a=A,b=B,alpha=alpha,beta=beta,u=U,
                                                              v=V,q=Q,work=work,iwork=iwork,info=info,lda=lda,
                                                              ldb=ldb,ldu=ldu,ldv=ldv,ldq=ldq)
+    #a:contains a part the upper-triangular matrix R(look at doc of the lapack function)
+    #b:contains a part the upper-triangular matrix R(look at doc of the lapack function)
+    #If col-rank A == col-rank B then a and b contain the same matrix R 
+    #u contains the left singular vectors of A
+    #v contains the left singular vectors of B
+    #q contains matrix Q
+    #alpha, beta -> singular values of matrix A and B respectively.
+    
+    #get the ratio of the singular values
+    
     return(a,b,alpha,beta,u,v,q)
     
